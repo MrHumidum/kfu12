@@ -1,0 +1,10 @@
+C:\Mac\Home\Documents\Projects\c#\kfu12\kfu12\obj\Debug\kfu12.csproj.AssemblyReference.cache
+C:\Mac\Home\Documents\Projects\c#\kfu12\kfu12\obj\Debug\kfu12.Form1.resources
+C:\Mac\Home\Documents\Projects\c#\kfu12\kfu12\obj\Debug\kfu12.Properties.Resources.resources
+C:\Mac\Home\Documents\Projects\c#\kfu12\kfu12\obj\Debug\kfu12.csproj.GenerateResource.cache
+C:\Mac\Home\Documents\Projects\c#\kfu12\kfu12\obj\Debug\kfu12.csproj.CoreCompileInputs.cache
+C:\Mac\Home\Documents\Projects\c#\kfu12\kfu12\bin\Debug\kfu12.exe.config
+C:\Mac\Home\Documents\Projects\c#\kfu12\kfu12\bin\Debug\kfu12.exe
+C:\Mac\Home\Documents\Projects\c#\kfu12\kfu12\bin\Debug\kfu12.pdb
+C:\Mac\Home\Documents\Projects\c#\kfu12\kfu12\obj\Debug\kfu12.exe
+C:\Mac\Home\Documents\Projects\c#\kfu12\kfu12\obj\Debug\kfu12.pdb
