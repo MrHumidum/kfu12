@@ -19,6 +19,8 @@ namespace kfu12
         public Form1()
         {
             InitializeComponent();
+            sortComboBox.SelectedIndex = 0;
+            pictureBox.ErrorImage = Image.FromFile("../../data/images/brokenImage.png");
             openFileDialog1.Filter = "Text files(*.txt)|*.txt";
             openFileDialog2.Filter = "Image Files(*.jpg;*.jpeg;*.png;*.gif;*.tif)|*.jpg;*.jpeg;*.png;*.gif;*.tif;...";
             saveFileDialog1.Filter = "Text files(*.txt)|*.txt";
@@ -27,6 +29,7 @@ namespace kfu12
 
         private void Form1_Load(object sender, EventArgs e)
         {
+
         }
 
         private void readImageFileButton_Click(object sender, EventArgs e)
@@ -34,7 +37,12 @@ namespace kfu12
             if (openFileDialog2.ShowDialog() == DialogResult.Cancel)
                 return;
             ImageStringData imageStringData = new ImageStringData(openFileDialog2.FileName + ";");
-            listBox.Items.Add(imageStringData);
+            if (imageStringData.path != null)
+            {
+                listBox.Items.Add(imageStringData);
+                listBox.SelectedItem = imageStringData;
+            }
+            SortListBox();
         }
 
         private void readfileButton_Click(object sender, EventArgs e)
@@ -51,6 +59,8 @@ namespace kfu12
                     listBox.Items.Add(imageStringData);
                 }
             }
+            SortListBox();
+
         }
 
         private void listBox_SelectItem(object sender, EventArgs e)
@@ -60,11 +70,6 @@ namespace kfu12
             {
                 pictureBox.Image = Image.FromFile(selectedItem.path);
                 textBox.Text = selectedItem.title;
-            }
-            else
-            {
-                pictureBox.Image = Image.FromFile("../../data/images/brokenImage.png");
-                textBox.Text = "Файл изображения не найден!";
             }
         }
 
@@ -84,12 +89,62 @@ namespace kfu12
 
         private void textBox_TextChanged(object sender, EventArgs e)
         {
-            if (textBox.Text != "Файл изображения не найден!")
+            if (listBox.SelectedItem != null)
             {
                 var selectedItem = listBox.SelectedItem as ImageStringData;
                 selectedItem.title = textBox.Text;
             }
         }
 
+        private void deleteRowButton_Click(object sender, EventArgs e)
+        {
+            listBox.Items.Remove(listBox.SelectedItem);
+            listBox.SelectedIndex = -1;
+            pictureBox.Image = null;
+            textBox.Text = string.Empty;
+            SortListBox();
+        }
+
+        private void clearButton_Click(object sender, EventArgs e)
+        {
+            listBox.Items.Clear();  
+            textBox.Text = string.Empty;
+            pictureBox.Image = null;
+            SortListBox();
+        }
+
+        private void SortListBox()
+        {
+            if (sortComboBox.SelectedIndex == 0) 
+            {
+                listBox.Sorted = true;
+            }
+            else if (sortComboBox.SelectedIndex == 1) 
+            {
+                SortListBoxDescending();
+            }
+        }
+        private void SortListBoxDescending()
+        {
+            listBox.Sorted = true;
+            listBox.Sorted = false;
+            List<ImageStringData> items = new List<ImageStringData>();
+            foreach (ImageStringData item in listBox.Items)
+            {
+                items.Add(item);
+            }
+            items.Reverse();
+            listBox.Items.Clear();
+            foreach (var item in items)
+            {
+                listBox.Items.Add(item);
+            }
+        }
+
+        private void sortComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SortListBox();
+
+        }
     }
 }
